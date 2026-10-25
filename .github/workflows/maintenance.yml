@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   dependency-check:
+    if: github.ref == 'refs/heads/main'
     name: Check Dependencies
     runs-on: ubuntu-latest
     steps:
@@ -23,6 +24,7 @@ jobs:
         run: npm outdated || true
 
   security-audit:
+    if: github.ref == 'refs/heads/main'
     name: Security Audit
     runs-on: ubuntu-latest
     steps:
@@ -40,6 +42,7 @@ jobs:
           fi
 
   stale:
+    if: github.ref == 'refs/heads/main'
     name: Stale Issues/PRs
     runs-on: ubuntu-latest
     steps:

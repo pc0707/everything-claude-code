@@ -21,6 +21,7 @@ on:
 
 jobs:
   test:
+    if: github.ref == 'refs/heads/main'
     name: Test
     runs-on: ${{ inputs.os }}
     timeout-minutes: 10

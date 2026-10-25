@@ -3,8 +3,6 @@ name: CI
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 # Prevent duplicate runs
 concurrency:
@@ -17,6 +15,7 @@ permissions:
 
 jobs:
   test:
+    if: github.ref == 'refs/heads/main'
     name: Test (${{ matrix.os }}, Node ${{ matrix.node }}, ${{ matrix.pm }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
@@ -154,6 +153,7 @@ jobs:
             !tests/node_modules/
 
   validate:
+    if: github.ref == 'refs/heads/main'
     name: Validate Components
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -203,6 +203,7 @@ jobs:
         continue-on-error: false
 
   security:
+    if: github.ref == 'refs/heads/main'
     name: Security Scan
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -221,6 +222,7 @@ jobs:
         continue-on-error: true  # Allows PR to proceed, but marks job as failed if vulnerabilities found
 
   lint:
+    if: github.ref == 'refs/heads/main'
     name: Lint
     runs-on: ubuntu-latest
     timeout-minutes: 5

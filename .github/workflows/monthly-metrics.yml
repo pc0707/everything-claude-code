@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   snapshot:
+    if: github.ref == 'refs/heads/main'
     name: Update metrics issue
     runs-on: ubuntu-latest
     steps:
